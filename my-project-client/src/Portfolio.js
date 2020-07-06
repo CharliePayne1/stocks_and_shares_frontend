@@ -1,6 +1,5 @@
 import React from 'react'
 import Stock from './Stock'
-import SearchBar from './SearchBar'
 
 
 export default class Portfolio extends React.Component {
@@ -12,7 +11,6 @@ export default class Portfolio extends React.Component {
     return (
       <div>
           <strong>Portfolio</strong>
-          < SearchBar />
         {this.renderPortfolio()}
       </div>
     )
