@@ -34,7 +34,7 @@ export default class StockContainer extends React.Component {
   render() {
     return (
       <div>
-        <strong>All Stocks</strong>
+        <h5>All Stocks</h5>
         < SearchBar searchInput={this.state.searchInput} handleSearchChange={this.handleSearchChange}/>
         <Calender 
         handleDateChange={this.props.handleDateChange}

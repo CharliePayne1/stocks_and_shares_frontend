@@ -10,6 +10,8 @@ export default class Portfolio extends React.Component {
   render() {
     return (
       <div>
+        <strong>Available Funds: £</strong>
+        <br></br>
           <strong>Portfolio</strong>
         {this.renderPortfolio()}
       </div>

@@ -6,7 +6,7 @@ export default class Calender extends React.Component {
 
     return (
         <>
-        <label htmlFor="start"> Calender: </label>
+        <label htmlFor="start"> or <strong>Calender:</strong></label>
         <input
         type="date"
         id="start"
