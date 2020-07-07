@@ -2,9 +2,18 @@ import React from 'react';
 import './App.css';
 import StockContainer from './StockContainer';
 import Portfolio from './Portfolio'
-import NavBar from './NavBar'
+import Home from './Home'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  // useRouteMatch,
+  // useParams,
+} from "react-router-dom";
 
-export default class Model extends React.Component {
+
+export default class App extends React.Component {
   state = {
     stocks: [], 
     portfolio: [],
@@ -47,19 +56,41 @@ addToPortfolio = (stock) => {
           .then(data => this.setState({stocks: data}))
         }
 
-  render() {
-    return (
-      <div className="App">
-      Stocks and Shares App
-      < NavBar />
-      < Portfolio portfolio={this.state.portfolio} removeStock={this.removeStock}/>
-      < StockContainer 
-      stocks={this.state.stocks} 
-      addToPortfolio={this.addToPortfolio}
-      handleDateChange={this.handleDateChange}
-      dateSelected={this.state.dateSelected}
-      />
-    </div>
-    )
+        render() {
+          return (
+            <Router>
+              <h4>Stocks and Shares App</h4>
+          <div>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/portfolio">Portfolio</Link>
+              </li>
+              <li>
+                <Link to="/stocks">Stocks</Link>
+              </li>
+            </ul>
+    
+            <Switch>
+              <Route path="/portfolio">
+              < Portfolio portfolio={this.state.portfolio} removeStock={this.removeStock}/>
+              </Route>
+              <Route path="/stocks">
+              < StockContainer 
+                  stocks={this.state.stocks} 
+                  addToPortfolio={this.addToPortfolio}
+                  handleDateChange={this.handleDateChange}
+                  dateSelected={this.state.dateSelected}
+                  />
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+      );
   }
 }

@@ -31,8 +31,6 @@ export default class StockContainer extends React.Component {
     return this.searchedStocks()
     }
 
-// FB
-
   render() {
     return (
       <div>
