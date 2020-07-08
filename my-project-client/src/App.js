@@ -20,15 +20,16 @@ componentDidMount = () => {
   if (localStorage.jwt) {
     fetch('http://localhost:3000/profile', {
       headers: {
-        Authorization: `Bearer ${this.getToken()}`
+        Authorization: this.getToken()
     },
   })
     .then(resp => resp.json())
-    .then(console.log)
     .then(res => this.setState({
-      loggedIn: true,
-      portfolio: res.transactions,
-      password: ""
+        loggedIn: true,
+        username: res.user.username,
+        user_id: res.user.id,
+        portfolio: res.transactions,
+        password: ""
     }))
     .catch(error => console.log(error.message));
   }
