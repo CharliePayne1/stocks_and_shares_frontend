@@ -1,10 +1,9 @@
 import React from 'react'
-import Stock from './Stock'
-
+import PortfolioStock from './PortfolioStock'
 
 export default class Portfolio extends React.Component {
     renderPortfolio = () => {
-        return this.props.portfolio.map(stock => < Stock key={stock.symbol} stock={stock} removeStock={this.props.removeStock}/> )
+        return this.props.portfolio.map((transaction) => < PortfolioStock key={transaction.id} transaction={transaction} removeStock={this.props.removeStock}/> )
     }
 
   render() {

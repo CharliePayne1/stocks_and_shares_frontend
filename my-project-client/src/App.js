@@ -6,17 +6,30 @@ import Authorised from './Authorised';
 export default class App extends React.Component {
   state = {
     username: "",
+    user_id: "",
     password: "",
+    portfolio: [],
     loggedIn: false
-    }
+  }
+  
+  getToken = () => {
+    return localStorage.getItem("jwt");
+  };
 
 componentDidMount = () => {
   if (localStorage.jwt) {
     fetch('http://localhost:3000/profile', {
-      headers: {Authorization: localStorage.jwt}
-    })
+      headers: {
+        Authorization: `Bearer ${this.getToken()}`
+    },
+  })
     .then(resp => resp.json())
-    .then(data => this.setState({loggedIn: true}))
+    .then(console.log)
+    .then(res => this.setState({
+      loggedIn: true,
+      portfolio: res.transactions,
+      password: ""
+    }))
     .catch(error => console.log(error.message));
   }
 }
@@ -57,10 +70,13 @@ handleLogin = (event) => {
     .then((res) => res.json())
     .then((res) => {
       if (res.jwt) {
+        console.log(res)
         localStorage.setItem("jwt", res.jwt)
         this.setState({
           loggedIn: true,
-          username: "",
+          username: res.user.username,
+          user_id: res.user.id,
+          portfolio: res.transactions,
           password: ""
         })
       }
@@ -79,14 +95,13 @@ handleInputChange = (event) => {
     return JSON.parse(atob(this.getToken().split(".")[1])).username;
   };
 
-  getToken = () => {
-    return localStorage.getItem("jwt");
-  };
 
   logOut = () => {
     localStorage.removeItem("jwt");
     this.setState({
       loggedIn: false,
+      username: "",
+      user_id: ""
     });
   };
   
@@ -97,7 +112,7 @@ handleInputChange = (event) => {
           {this.state.loggedIn
             ?
             <>
-            < Authorised />
+            < Authorised username={this.state.username} user_id={this.state.user_id} portfolio={this.state.portfolio}/>
             <button onClick={this.logOut}>log out</button>
             </>
             :
