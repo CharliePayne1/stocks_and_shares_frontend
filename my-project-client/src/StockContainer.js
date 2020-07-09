@@ -2,6 +2,7 @@ import React from 'react'
 import Stock from './Stock'
 import SearchBar from './SearchBar'
 import Calender from './Calender'
+import { Grid, Label, Segment} from 'semantic-ui-react'
 
 
 export default class StockContainer extends React.Component {
@@ -34,13 +35,21 @@ export default class StockContainer extends React.Component {
   render() {
     return (
       <div>
-        <h5>All Stocks</h5>
+        <Segment raised>
+        <Label as='a' color='red' ribbon>All Stocks</Label>
         < SearchBar searchInput={this.state.searchInput} handleSearchChange={this.handleSearchChange}/>
         <Calender 
         handleDateChange={this.props.handleDateChange}
         dateSelected={this.props.dateSelected}
         />
-        {this.renderStocks()}
+        <Grid columns={3} padded>
+        <Grid.Row>
+          {this.renderStocks()}
+        <Grid.Column>
+        </Grid.Column>
+        </Grid.Row>
+        </Grid>
+        </Segment>
       </div>
     )
   }

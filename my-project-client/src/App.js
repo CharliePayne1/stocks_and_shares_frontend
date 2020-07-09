@@ -1,6 +1,9 @@
 import React from 'react';
 import './App.css';
 import Authorised from './Authorised';
+import {Icon, Button, Input} from 'semantic-ui-react'
+
+
 
 
 export default class App extends React.Component {
@@ -9,7 +12,8 @@ export default class App extends React.Component {
     user_id: "",
     password: "",
     portfolio: [],
-    loggedIn: false
+    loggedIn: false,
+    isLoading: true,
   }
   
   getToken = () => {
@@ -29,9 +33,17 @@ componentDidMount = () => {
         username: res.user.username,
         user_id: res.user.id,
         portfolio: res.transactions,
-        password: ""
+        password: "",
+        isLoading: false,
     }))
-    .catch(error => console.log(error.message));
+    .catch(error => {console.log(error.message)
+      localStorage.removeItem("jwt")
+      this.setState({
+        isLoading: false
+      })
+    });
+  } else {
+    this.setState({ isLoading: false })
   }
 }
 
@@ -107,48 +119,51 @@ handleInputChange = (event) => {
   };
   
   render() {
+    if (this.state.isLoading) return  null 
+    
     return (
-      <div>
-        <h4>Homepage</h4>
+      <div >
           {this.state.loggedIn
             ?
             <>
             < Authorised username={this.state.username} user_id={this.state.user_id} portfolio={this.state.portfolio}/>
-            <button onClick={this.logOut}>log out</button>
+            <Button color="secondary" onClick={this.logOut}><Icon name="log out" /></Button>
             </>
             :
-          <>
-          <form onSubmit={this.handleCreate}>
-            <input
+          < div className="loginPage" Align='center'>
+          <h5>Log In</h5>
+          <form onSubmit={this.handleLogin} Align='center'>
+            <Input className="input"
               name="username"
               onChange={this.handleInputChange}
               type="text"
               placeholder="username"
             />
-            <input
+            <Input className="input"
               name="password"
               onChange={this.handleInputChange}
               type="password"
               placeholder="password"
             />
-            <input type="submit" value="sign up" />
-          </form>
-          <form onSubmit={this.handleLogin}>
-            <input
-              name="username"
-              onChange={this.handleInputChange}
-              type="text"
-              placeholder="username"
-            />
-            <input
-              name="password"
-              onChange={this.handleInputChange}
-              type="password"
-              placeholder="password"
-            />
-            <input type="submit" value="log in" />
+            <button className="input buttun" type="submit" >Log In</button>
           </form> 
-          </> }
+          <h5>Sign up</h5>
+          <form onSubmit={this.handleCreate} >
+            <Input className="input"
+              name="username"
+              onChange={this.handleInputChange}
+              type="text"
+              placeholder="Username"
+            />
+            <Input className="input"
+              name="password"
+              onChange={this.handleInputChange}
+              type="password"
+              placeholder="password"
+            />
+            <button className="input buttun" type="submit" >Sign Up</button>
+          </form>
+          </div> }
       </div>
     );
   }

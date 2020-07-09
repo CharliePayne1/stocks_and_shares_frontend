@@ -3,6 +3,7 @@ import StockContainer from './StockContainer';
 import Portfolio from './Portfolio'
 import Home from './Home'
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from "react-router-dom";
+import {Menu, Button, Icon} from 'semantic-ui-react'
 
 export default class Authorised extends React.Component {
     state = {
@@ -15,9 +16,7 @@ export default class Authorised extends React.Component {
         fetch('http://localhost:3000/stocks')
         .then(resp => resp.json())
         .then(data => this.setState({stocks: data.data}))
-        .catch(error => console.log("mine"));
-        console.log(this.state.portfolio)
-        console.log(this.props.portfolio)
+        .catch(error => console.log(error.message));
     }
 
     addToPortfolio = (stock) => {
@@ -85,14 +84,16 @@ export default class Authorised extends React.Component {
     render() {
         return (
             <Router>
-                <h4>Welcome back {this.props.username}</h4>
-                <Link to="/">Home   | </Link>
-                <Link to="/portfolio">Portfolio   | </Link>
+                <Menu className="mainMenu">
+                <Link to="/"><Icon name='home' size='big'/></Link>   
+                <Link to="/portfolio">Portfolio</Link>
                 <Link to="/stocks">Stocks</Link>
+                <h4>Welcome back {this.props.username}</h4>
+                </Menu>
 
             <Switch>
                 <Route path="/portfolio">
-                    <Portfolio portfolio={this.state.portfolio} removeStock={this.removeStock}/>
+                    <Portfolio portfolio={this.state.portfolio} stocks={this.state.stocks} removeStock={this.removeStock}/>
                 </Route>
                 <Route path="/stocks">
                 < StockContainer 

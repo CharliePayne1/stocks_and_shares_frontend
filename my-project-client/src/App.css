@@ -37,6 +37,34 @@
   }
 }
 
-.stockCard {
-  
+
+*{ margin: 0; width: 100%; overflow-X: none}
+
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginPage .input {
+  width: 70%;
+  margin: 0.5em;
+}
+
+.loginPage .buttun {
+  text-align: center;
+  background-color: rgb(199, 235, 216);
+  padding: 0.5em 0;
+  border: none;
+  border-radius: 1.5em;
+}
+
+.mainMenu {
+  display: flex;
+  flex-direction: row;
+  margin: 0em;
+  width: 100%;
+  justify-content: space-between;
 }
