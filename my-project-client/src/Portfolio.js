@@ -1,6 +1,5 @@
 import React from 'react'
 import PortfolioStock from './PortfolioStock'
-import CardContent from '@material-ui/core/CardContent'
 import { Grid, Image, Button} from 'semantic-ui-react'
 
 
@@ -19,22 +18,15 @@ export default class Portfolio extends React.Component {
 
   render() {
     return (
-      <>
-        <strong>Available Funds: £</strong>
-        <br></br>
+      <div className="portfolio">
+        <h2>Available Funds: £</h2>
         <h5>Portfolio Analytics</h5>
         <p>Total cost of investments: ${this.caclulateTotalInvestmentSpend()}</p>
         <p>Average spend per share: ${this.averageSpend()}</p>
           <h3>Portfolio</h3>
           <p>Showing all {this.props.portfolio.length} shares in your portfolio</p>
-         <Grid columns={3} padded>
-        <Grid.Row>
-        {this.renderPortfolio()}
-        <Grid.Column>
-        </Grid.Column>
-        </Grid.Row>
-        </Grid>
-      </>
+        <div className="portfolioContainer">{this.renderPortfolio()}</div>
+      </div>
     )
   }
 }

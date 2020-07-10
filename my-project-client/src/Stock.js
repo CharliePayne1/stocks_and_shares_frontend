@@ -1,14 +1,12 @@
 import React from 'react'
-import { Grid, Image, Button} from 'semantic-ui-react'
-
-import Paper from '@material-ui/core/Paper';
+import {Image, Button} from 'semantic-ui-react'
 
 export default class Stock extends React.Component {
 
   render() {
   return (
     <>
-    <div padding="20px">
+    <div className= "stock" padding="20px">
          <Image width="300px" src={`http://api.tradingphysics.com/getchart?type=pi&date=${(this.props.stock.date).slice(0,10).replace(/-/g,"")}&indicators=MarketIndicator.$.Outstanding.VolumeQ+MarketIndicator.$.Executed.VolumeA+MarketIndicator.$.Executed.AgeA&stock=${this.props.stock.symbol}&days=2`} wrapped ui={true} />
            <br></br>
             <strong>{this.props.stock.symbol}</strong>
@@ -21,7 +19,7 @@ export default class Stock extends React.Component {
           <br></br>
         Last updated: {(this.props.stock.date).slice(0, 10)}
         <br></br>
-        <Button primary onClick={() => this.props.addToPortfolio(this.props.stock)}>Buy</Button>
+        <Button className="buyButton" primary onClick={() => this.props.addToPortfolio(this.props.stock)}>Buy</Button>
     
         </div>
         <br></br>

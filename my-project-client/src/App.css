@@ -67,4 +67,87 @@
   margin: 0em;
   width: 100%;
   justify-content: space-between;
+  align-items: flex-end;
+  padding: 0.5em 1em;
+}
+
+.logout {
+  width: auto;
+  text-align: center;
+}
+
+.stock {
+  width: 28%;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2em;
+}
+
+.buyButton {
+  width: 20%;
+  align-content: center;
+  justify-content: center;
+  margin: 50em;
+}
+
+.searchBar {
+  width: 20%
+}
+
+.portfolio {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 90vh;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.sell {
+  margin-top: 1em;
+  background-color: mediumaquamarine;
+  padding: 0.5em;
+  border-radius: 1em;
+}
+
+.portfolioStock {
+  padding: 1em;
+  width: 70%;
+  background-color: rgba(155, 201, 230, 0.79);
+  border: solid;
+  border-color: rgb(155, 201, 230);
+}
+
+.portfolioContainer {
+  overflow: auto;
+  white-space: nowrap;
+  overflow-x: scroll;
+  display: flex;
+}
+.stocksHeader {
+  width: 10%;
+  position: relative;
+  top: -5px;
+  text-align: center;
+}
+
+.article {
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2em;
+}
+
+.articleGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.newsHeader {
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.newsHeader h2, .newsHeader h5 {
+  font-family: 'Times New Roman', Times, serif;
 }

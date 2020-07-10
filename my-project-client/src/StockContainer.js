@@ -35,20 +35,20 @@ export default class StockContainer extends React.Component {
   render() {
     return (
       <div>
-        <Segment raised>
-        <Label as='a' color='red' ribbon>All Stocks</Label>
-        < SearchBar searchInput={this.state.searchInput} handleSearchChange={this.handleSearchChange}/>
-        <Calender 
-        handleDateChange={this.props.handleDateChange}
-        dateSelected={this.props.dateSelected}
-        />
-        <Grid columns={3} padded>
-        <Grid.Row>
-          {this.renderStocks()}
-        <Grid.Column>
-        </Grid.Column>
-        </Grid.Row>
-        </Grid>
+        <Segment>
+       <Label className="stocksHeader" color='red'><b>All Stocks</b></Label>
+          < SearchBar searchInput={this.state.searchInput} handleSearchChange={this.handleSearchChange}/>
+          <Calender 
+              handleDateChange={this.props.handleDateChange}
+              dateSelected={this.props.dateSelected}
+          />
+          <Grid columns={3} padded>
+            <Grid.Row>
+              {this.renderStocks()}
+              <Grid.Column>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
         </Segment>
       </div>
     )

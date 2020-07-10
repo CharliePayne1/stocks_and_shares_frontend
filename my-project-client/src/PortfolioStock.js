@@ -19,16 +19,12 @@ export default class PortfolioStock extends React.Component {
 
   render() {
     return (
-        <div padding="20px">
+        <div className="portfolioStock">
             <strong>{this.props.transaction.stock_symbol}</strong>
-            <br></br>
-            Cost of share: ${this.props.transaction.cost}
-            <br></br>
-            Return on investment: ${this.calculateCashReturn()}
-            <br></br>
-            % Return on investment: {this.calculatePercentageReturn()}%
-            <br></br>
-            <Button color='red' onClick={() => this.props.removeStock(this.props.transaction)}>Sell</Button>
+                <h5>Cost of share: ${this.props.transaction.cost}</h5>
+                <h5>Return on investment: ${this.calculateCashReturn()}</h5>
+                <h5>% Return on investment: {this.calculatePercentageReturn()}%</h5>
+            <button className="sell" onClick={() => this.props.removeStock(this.props.transaction)}>Sell</button>
       </div>
     )
   }

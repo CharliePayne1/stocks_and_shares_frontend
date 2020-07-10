@@ -126,8 +126,7 @@ handleInputChange = (event) => {
           {this.state.loggedIn
             ?
             <>
-            < Authorised username={this.state.username} user_id={this.state.user_id} portfolio={this.state.portfolio}/>
-            <Button color="secondary" onClick={this.logOut}><Icon name="log out" /></Button>
+            < Authorised username={this.state.username} user_id={this.state.user_id} portfolio={this.state.portfolio} logOut={this.logOut}/>
             </>
             :
           < div className="loginPage" Align='center'>

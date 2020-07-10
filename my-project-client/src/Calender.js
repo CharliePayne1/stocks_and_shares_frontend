@@ -5,7 +5,7 @@ export default class Calender extends React.Component {
   render() {
 
     return (
-        <>
+        <div className="searchBar">
         <label htmlFor="start"> or <strong>Calender:</strong></label>
         <input
         type="date"
@@ -17,7 +17,7 @@ export default class Calender extends React.Component {
        onChange={e => this.props.handleDateChange(e)}
     >
        </input>
-        </>
+        </div>
     )
   }
 }

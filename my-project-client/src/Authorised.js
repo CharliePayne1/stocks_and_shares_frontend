@@ -9,13 +9,14 @@ export default class Authorised extends React.Component {
     state = {
         stocks: [], 
         portfolio: this.props.portfolio,
-        dateSelected: "2020-07-02"
+        dateSelected: "2020-07-02", 
+        news: []
     }
 
     componentDidMount() {
         fetch('http://localhost:3000/stocks')
         .then(resp => resp.json())
-        .then(data => this.setState({stocks: data.data}))
+        .then(data => this.setState({stocks: data.response.data, news: data.news.results}))
         .catch(error => console.log(error.message));
     }
 
@@ -85,10 +86,11 @@ export default class Authorised extends React.Component {
         return (
             <Router>
                 <Menu className="mainMenu">
-                <Link to="/"><Icon name='home' size='big'/></Link>   
-                <Link to="/portfolio">Portfolio</Link>
-                <Link to="/stocks">Stocks</Link>
-                <h4>Welcome back {this.props.username}</h4>
+                    <Link to="/"><Icon name='home' size='big'/></Link>   
+                    <Link to="/portfolio">Portfolio</Link>
+                    <Link to="/stocks">Stocks</Link>
+                    <b>Welcome back {this.props.username}</b>
+                    <Button size="mini" className="logout" color="secondary" onClick={this.props.logOut} icon="log out"></Button>
                 </Menu>
 
             <Switch>
@@ -104,7 +106,7 @@ export default class Authorised extends React.Component {
                     />
                 </Route>
                 <Route exact path="/">
-                <Home />
+                <Home news={this.state.news}/>
                 </Route>
                 <Redirect to="/"/>
             </Switch>
