@@ -83,7 +83,6 @@ handleLogin = (event) => {
     .then((res) => res.json())
     .then((res) => {
       if (res.jwt) {
-        console.log(res)
         localStorage.setItem("jwt", res.jwt)
         this.setState({
           loggedIn: true,
@@ -94,8 +93,7 @@ handleLogin = (event) => {
         })
       }
       return res;
-    }).then(console.log)
-    .catch(error => console.log(error.message))
+    }).catch(error => console.log(error.message))
 };
 
 handleInputChange = (event) => {
