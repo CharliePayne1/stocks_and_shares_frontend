@@ -1,10 +1,7 @@
 import React from 'react';
 import './App.css';
 import Authorised from './Authorised';
-import {Icon, Button, Input} from 'semantic-ui-react'
-
-
-
+import {Input} from 'semantic-ui-react'
 
 export default class App extends React.Component {
   state = {
